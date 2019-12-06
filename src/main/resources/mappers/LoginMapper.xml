@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neusoft.CHSS.mapper.LoginMapper">
+
+    <resultMap id="userMap" type="com.neusoft.CHSS.entity.User">
+        <id column="user_id" property="userId" javaType="java.lang.Integer"></id>
+        <result column="user_name" property="userName" javaType="java.lang.String"></result>
+        <result column="user_password" property="userPassword" javaType="java.lang.String"></result>
+        <result column="user_age" property="userAge" javaType="java.lang.Integer"></result>
+        <result column="user_gender" property="userGender" javaType="java.lang.Integer"></result>
+        <result column="user_phone" property="userPhone" javaType="java.lang.String"></result>
+        <result column="user_address" property="userAddress" javaType="java.lang.String"></result>
+        <result column="role_id" property="roleId" javaType="java.lang.Integer"></result>
+    </resultMap>
+
+    <!--
+        查找所有用户
+        List<User> findAllUser();
+    -->
+    <select id="findAllUser" resultMap="userMap">
+      SELECT
+          user_id,
+          user_name,
+          user_password,
+          user_age,
+          user_gender,
+          user_phone,
+          user_address,
+          role_id
+      FROM
+          user
+    </select>
+
+    <!--
+        根据用户名查找用户
+        User findUserByUsername(@Param("userName") String username)
+    -->
+    <select id="findUserByAccount" resultType="com.neusoft.CHSS.entity.User" parameterType="java.lang.String">
+      SELECT
+        user_id userId,
+        user_name userName,
+        user_password userPassword,
+        user_phone userPhone,
+        user_address userAddress,
+        role_id roleId,
+        is_delete isDelete,
+        user_salt userSalt,
+        per_type perType
+      FROM
+        user
+      <where>
+          <if test="account != null">
+              user_account = #{account}
+          </if>
+      </where>
+    </select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

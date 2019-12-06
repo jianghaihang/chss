@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neusoft.CHSS.mapper.AreaMapper">
+
+    <resultMap id="areaMap" type="com.neusoft.CHSS.entity.Area">
+        <id column="area_id" property="areaId"></id>
+        <result column="area_name" property="areaName"></result>
+        <result column="area_state" property="areaState"></result>
+        <result column="area_icon" property="areaIcon"></result>
+        <result column="area_pid" property="areaPid"></result>
+        <result column="area_type" property="areaType"></result>
+        <result column="area_url" property="areaUrl"></result>
+    </resultMap>
+
+    <!-- findArea() -->
+    <select id="findArea" resultMap="areaMap" parameterType="java.lang.String">
+      SELECT
+        area_id,area_name,
+        area_state,area_icon,
+        area_pid,area_type,
+        area_url
+      FROM
+        admin_area
+      <where>
+          <if test="areaId != null">
+              area_pid = #{areaId}
+          </if>
+          <if test="areaType != null">
+              AND area_type = #{areaType}
+          </if>
+      </where>
+    </select>
+
+</mapper>

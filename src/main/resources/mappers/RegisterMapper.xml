@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neusoft.CHSS.mapper.RegisterMapper">
+
+    <!-- 通过用户名查找用户名是否存在 -->
+    <select id="findUserByUsername" parameterType="java.lang.String" resultType="com.neusoft.CHSS.entity.User">
+        SELECT
+          user_id,
+          user_name,user_password,
+          user_age,user_gender,
+          user_phone,user_address,
+          role_id,is_delete,
+          pwd_bak,
+          create_user,create_time,
+          modified_user,modified_time
+        FROM
+          user
+        WHERE
+          user_name=#{userName}
+    </select>
+
+    <!-- 添加用户 -->
+    <insert id="addNewUser" >
+        INSERT INTO
+          user(
+            user_name,
+            user_account,
+            user_password,
+            user_phone,
+            user_address,
+            role_id,
+            is_delete,
+            user_info,
+            is_manager,
+            user_code,
+            id_num,
+            land_line,
+            pinyin,
+            per_type,
+            sub_dept,
+            doc_title,
+            pub_health,
+            doc_code,
+            create_user,
+            create_time,
+            modified_user,
+            modified_time,
+            user_salt,
+            pwd_bak
+          )VALUES (
+            #{userName},
+            #{userAccount},
+            #{userPassword},
+            #{userPhone},
+            #{userAddress},
+            #{roleId},
+            #{isDelete},
+            #{userInfo},
+            #{isManager},
+            #{userCode},
+            #{idNum},
+            #{landLine},
+            #{pinyin},
+            #{perType},
+            #{subDept},
+            #{docTitle},
+            #{pubHealth},
+            #{docCode},
+            #{createUser},
+            NOW(),
+            #{modifiedUser},
+            NOW(),
+            #{userSalt},
+            #{pwdBak}
+          )
+    </insert>
+
+</mapper>

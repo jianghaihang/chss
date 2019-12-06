@@ -1,0 +1,75 @@
+
+#main{
+    width:600px;
+    height:400px;
+}
+
+/*北部*/
+#north{
+    height: 70px;
+    background:#eee;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: 方正姚体;
+}
+
+/*
+    上层：
+        用户名，管理员，查询
+*/
+#user{
+    padding-top: 6px;
+    padding-left: 5px;
+}
+
+#username{
+    width: 250px;
+    position: relative;
+    display: inline-block;
+}
+
+#manager{
+    width: 250px;
+    position: relative;
+    display: inline-block;
+}
+
+#search{
+    width: 100px;
+    position: relative;
+    display: inline-block;
+}
+
+/*
+    下区域：
+        用户账号，用户角色，重置
+*/
+#property{
+    padding-top: 5px;
+    padding-left: 5px;
+    position: relative;
+}
+
+#account{
+    width: 250px;
+    position: relative;
+    display: inline-block;
+}
+
+/*用户角色*/
+#role{
+    width: 250px;
+    position: relative;
+    display: inline-block;
+}
+
+#rest{
+    width: 100px;
+    position: relative;
+    display: inline-block;
+}
+
+#center{
+    padding:5px;
+    background:#eee;
+}

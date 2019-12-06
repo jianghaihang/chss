@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neusoft.CHSS.mapper.AccountMapper">
+
+    <resultMap id="accountMap" type="com.neusoft.CHSS.entity.User">
+        <id column="user_id" property="userId"></id>
+        <result column="user_name" property="userName"></result>
+        <result column="user_account" property="userAccount"></result>
+        <result column="user_age" property="userAge"></result>
+        <result column="user_gender" property="userGender"></result>
+        <result column="user_phone" property="userPhone"></result>
+        <result column="user_address" property="userAddress"></result>
+        <result column="role_id" property="roleId"></result>
+        <result column="is_delete" property="isDelete"></result>
+        <result column="modified_user" property="modifiedUser"></result>
+        <result column="user_info" property="userInfo"></result>
+        <result column="is_manager" property="isManager"></result>
+        <result column="user_code" property="userCode"></result>
+        <result column="id_num" property="idNum"></result>
+        <result column="land_line" property="landLine"></result>
+        <result column="pinyin" property="pinyin"></result>
+        <result column="per_type" property="perType"></result>
+        <result column="sub_dept" property="subDept"></result>
+        <result column="doc_title" property="docTitle"></result>
+        <result column="pub_health" property="pubHealth"></result>
+        <result column="doc_code" property="docCode"></result>
+    </resultMap>
+
+    <!-- 查询全部用户 -->
+    <select id="findUserByUnameAndAccAndRole" resultMap="accountMap">
+      SELECT
+        user_id,user_name,
+        user_age,user_gender,
+        user_phone,user_address,
+        role_id,is_delete,
+        modified_user,user_account,
+        user_info,is_manager,
+        user_code,id_num,
+        land_line,pinyin,
+        per_type,sub_dept,
+        doc_title,pub_health,
+        doc_code
+      FROM
+        user
+      where
+          is_delete = 0
+          <if test="userName != null">
+              AND user_name = #{userName}
+          </if>
+          <if test="account != null">
+              AND user_account = #{account}
+          </if>
+          <if test="roleId != null">
+              AND role_id = #{roleId}
+          </if>
+          <if test="page != null and rows != null">
+              LIMIT #{page},#{rows}
+          </if>
+    </select>
+
+    <!-- 用户总数 -->
+    <select id="findUserTotals" resultType="java.lang.Integer">
+        SELECT
+          count(user_id) as totals
+        FROM
+          user
+        where
+          is_delete = 0
+        <if test="userName != null">
+            AND user_name = #{userName}
+        </if>
+        <if test="account != null">
+            AND user_account = #{account}
+        </if>
+        <if test="roleId != null">
+            AND role_id = #{roleId}
+        </if>
+        <!--<if test="page != null and rows != null">-->
+            <!--LIMIT #{page},#{rows}-->
+        <!--</if>-->
+    </select>
+
+</mapper>

@@ -1,0 +1,10 @@
+
+#center_main{
+    overflow: hidden;
+}
+
+#center_page{
+    position: absolute;
+    padding: 0;
+    display: block;
+}

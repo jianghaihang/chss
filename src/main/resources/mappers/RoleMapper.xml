@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neusoft.CHSS.mapper.RoleMapper">
+
+    <resultMap id="roleMap" type="com.neusoft.CHSS.entity.Role">
+        <id column="role_id" property="roleId"></id>
+        <result column="role_name" property="roleName"></result>
+        <result column="menu_id" property="menuId"></result>
+    </resultMap>
+
+    <select id="findRoleAll" resultMap="roleMap">
+        SELECT
+          role_id,
+          role_name,
+          menu_id
+        FROM
+          role
+    </select>
+
+</mapper>

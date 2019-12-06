@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增用户</title>
+    <script type="text/javascript" src="../../../../easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../../easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../../../../easyui/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="../../../../easyui/Convert_Pinyin.js"></script>
+
+    <link rel="stylesheet" href="../../../../easyui/themes/default/easyui.css">
+    <link rel="stylesheet" href="../../../../easyui/themes/icon.css">
+
+    <style type="text/css">
+
+        .info_name{
+            width: 170px;
+        }
+
+        #name-info{
+            height: 20px;
+        }
+
+        #add-user{
+            font-size: 12px;
+        }
+
+        .textbox-icon{
+            height: 19px;
+        }
+
+        .textbox{
+            border-radius: 0px 0px;
+        }
+
+        #name-info{
+            border: 1px solid #ffa8a8;
+        }
+
+        #user-pwd{
+            border-radius: 0px;
+        }
+
+        #user-account{
+            border: 1px solid #ffa8a8;
+        }
+
+        #staff-code{
+            border: 1px solid #ffa8a8;
+        }
+
+        /*下拉选箭头*/
+        .textbox-icon{
+            height: 19px;
+        }
+
+        #_easyui_textbox_input1,#_easyui_textbox_input2,#_easyui_textbox_input3,#_easyui_textbox_input4,#_easyui_textbox_input5,
+        #_easyui_textbox_input6,#_easyui_textbox_input7,#_easyui_textbox_input8,#_easyui_textbox_input9,#_easyui_textbox_input10,
+        #_easyui_textbox_input11,#_easyui_textbox_input12,#_easyui_textbox_input13,#_easyui_textbox_input14,#_easyui_textbox_input15,
+        #_easyui_textbox_input16,#_easyui_textbox_input17,#_easyui_textbox_input18,#_easyui_textbox_input19{
+            height: 20px;
+        }
+
+        #doctor-code{
+            border: 1px solid #59aaff;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="add" >
+
+        <div id="add-user">
+
+            <!-- 按钮工具 -->
+            <div id="add_tools" style="background: #F4F4F4;">
+                <!--<div id="user_info" style="margin-right: 490px;">用户信息</div>-->
+                <div id="user_info" >用户信息</div>
+                <div id="add_save" style="position: relative;float: right;" onclick="save();">保存</div>
+            </div>
+
+            <!-- 基本信息 -->
+            <fieldset id="basic-pro">
+                <legend style="font-size: 14px;font-weight: bold;">基本属性</legend>
+                <table>
+                    <tr>
+                        <td class="info_name">用户名称：</td>
+                        <td><input id="name-info"></td>
+                        <td id="name-tip" style="color: #CC2222;display: none;">*用户名称为必填项</td>
+                    </tr>
+                    <tr>
+                        <td class="info_name">用户密码：</td>
+                        <td><input id="user-pwd"></td>
+                        <td id="pwd-tip" style="color: #CC2222;display: none;">*用户密码为必填项</td>
+                    </tr>
+                    <tr>
+                        <td>用户账号：</td>
+                        <td><input id="user-account"></td>
+                        <td id="acc-tip" style="color: #CC2222;display: none;">*用户账号为必填项</td>
+                    </tr>
+                    <tr>
+                        <td>描述信息：</td>
+                        <td><input id="user-info"></td>
+                    </tr>
+                    <tr>
+                        <td>所属机构：</td>
+                        <td><input id="sub-org"></td>
+                    </tr>
+                    <tr>
+                        <td>业务角色：</td>
+                        <td><input id="business-role"></td>
+                    </tr>
+                    <tr>
+                        <td>管&nbsp;&nbsp;理&nbsp;&nbsp;员：</td>
+                        <td><input id="manager"></td>
+                    </tr>
+                </table>
+            </fieldset>
+
+            <!-- 扩展信息 -->
+            <fieldset id="extend-pro">
+                <table>
+                    <legend style="font-size: 14px;font-weight: bold;">扩展属性</legend>
+                    <tr>
+                        <td class="info_name">员工编码(关联组织机构)：</td>
+                        <td><input id="staff-code"></td>
+                        <td style="color: #3414cc;">*医院内部对于人员的编码设置,可理解为员工编号</td>
+                        <td id="staff-tip" style="color: #CC2222;display: none;">*员工编号为必填项</td>
+                    </tr>
+                    <tr>
+                        <td class="info_name">身份证号：</td>
+                        <td><input id="id-number"></td>
+                    </tr>
+                    <tr>
+                        <td>手机号码：</td>
+                        <td><input id="phone"></td>
+                    </tr>
+                    <tr>
+                        <td>座机号码：</td>
+                        <td><input id="land-line"></td>
+                    </tr>
+                    <tr>
+                        <td>拼音简码：</td>
+                        <td><input id="alpha-bre-code"></td>
+                    </tr>
+                    <tr>
+                        <td>人员类型：</td>
+                        <td><input id="person-type"></td>
+                        <td style="color: #3414cc;">*HIS业务用户必填</td>
+                    </tr>
+                    <tr>
+                        <td>所属科室(无科室可不录)：</td>
+                        <td><input id="sub-departments"></td>
+                        <td style="color: #3414cc;">*HIS业务用户必填</td>
+                    </tr>
+                    <tr>
+                        <td>医生职称：</td>
+                        <td><input id="doctor-title"></td>
+                    </tr>
+                    <tr>
+                        <td>公卫权限：</td>
+                        <td><input id="health-auth"></td>
+                    </tr>
+                    <tr>
+                        <td>医生执业证书编码：</td>
+                        <td><input id="doctor-code"></td>
+                        <td style="color: #3414cc;">*合法的15位医师执业证书编码</td>
+                        <td id="code-tip" style="color: #CC2222;display: none;">*医生执业证书为必填项</td>
+                    </tr>
+                </table>
+            </fieldset>
+        </div>
+
+    </div>
+
+    <!-- 人员类型 -->
+    <div id="per-type"></div>
+
+    <!--<input id="save" type="button" value="保存" onclick="save();">-->
+
+    <!-- 人员信息 -->
+    <script type="text/javascript">
+
+        <!-- 用户名称 -->
+        $("#name-info").textbox({
+            required: true,
+            missingMessage: "用户名称必填",
+            onChange:function (newValue, oldValue) {
+
+                var fullName = pinyin.getFullChars(newValue);
+
+                $("#alpha-bre-code").textbox('setText',fullName);
+            }
+        });
+
+        <!-- 用户密码 -->
+        $("#user-pwd").passwordbox({
+            required: true,
+            height: 20,
+            missingMessage: "用户密码必填",
+        });
+
+        <!-- 账号 -->
+        $("#user-account").textbox({
+            required: true,
+            missingMessage: "账号必填",
+        });
+
+        <!-- 描述信息 -->
+        $("#user-info").textbox({
+        });
+
+        <!-- 所属机构 -->
+        $("#sub-org").combotree({
+            valueField:"id",
+            textField: "text",
+            multiple: false,
+            data:[
+                {
+                    "id":"1",
+                    "text":"xxx测试省级",
+                    "children":[
+                        {
+                            "id":"2",
+                            "text":"xxx测试市",
+                            "children":[
+                                {
+                                    "id":"3",
+                                    "text":"xxx测试区",
+                                    "children":[
+                                        {
+                                            "id":"4",
+                                            "text":"xxx测试街道",
+                                            "children":[
+                                                {
+                                                    "id":"5",
+                                                    "text":"xxx测试卫生服务中心"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        });
+
+        <!-- 业务角色 -->
+        $("#business-role").combobox({
+            valueField:"id",
+            textField: "text",
+            multiple: false,
+            data:[
+                {
+                    "id":"1",
+                    "text":"村医门诊"
+                },{
+                    "id":"2",
+                    "text":"零售药店"
+                },{
+                    "id":"3",
+                    "text":"区县系统DBA"
+                },{
+                    "id":"4",
+                    "text":"区县综合管理"
+                },{
+                    "id":"5",
+                    "text":"省厅综合管理"
+                },{
+                    "id":"6",
+                    "text":"省系统DBA"
+                },{
+                    "id":"7",
+                    "text":"市局综合管理"
+                },{
+                    "id":"8",
+                    "text":"市系统DBA"
+                },{
+                    "id":"9",
+                    "text":"系统字典录入"
+                },{
+                    "id":"10",
+                    "text":"医院DBA"
+                },{
+                    "id":"11",
+                    "text":"医院病案人员"
+                },{
+                    "id":"12",
+                    "text":"医院财务管理"
+                },{
+                    "id":"13",
+                    "text":"医院公卫管理"
+                },{
+                    "id":"14",
+                    "text":"医院门诊护士"
+                },{
+                    "id":"15",
+                    "text":"医院住院护士"
+                },{
+                    "id":"16",
+                    "text":"医院门诊医生"
+                },{
+                    "id":"17",
+                    "text":"医院住院医生"
+                },{
+                    "id":"18",
+                    "text":"医院收款员"
+                },{
+                    "id":"19",
+                    "text":"医院物资管理"
+                },{
+                    "id":"20",
+                    "text":"医院药房"
+                },{
+                    "id":"21",
+                    "text":"待定"
+                }
+            ]
+        });
+
+        <!-- 管理员 -->
+        $("#manager").checkbox({
+        });
+
+        <!-- 员工编码 -->
+        $("#staff-code").textbox({
+            required: true,
+            missingMessage: "员工编码必填",
+        });
+
+        <!-- 身份证号 -->
+        $("#id-number").textbox({
+
+        });
+
+        <!-- 手机号码 -->
+        $("#phone").textbox({
+
+        });
+
+        <!-- 座机号码 -->
+        $("#land-line").textbox({
+
+        });
+
+        <!-- 拼音简码 -->
+        $("#alpha-bre-code").textbox({
+            readonly: true
+        });
+
+        <!-- 人员类型 -->
+        $("#person-type").combobox({
+            valueField:"id",
+            textField: "text",
+            multiple: false,
+            data:[
+                {
+                    "id":"1",
+                    "text":"其它"
+                },{
+                    "id":"2",
+                    "text":"收费员"
+                },{
+                    "id":"3",
+                    "text":"药剂师"
+                },{
+                    "id":"4",
+                    "text":"检验师"
+                },{
+                    "id":"5",
+                    "text":"会计师"
+                },{
+                    "id":"6",
+                    "text":"全科医生"
+                },{
+                    "id":"7",
+                    "text":"住院医师"
+                },{
+                    "id":"8",
+                    "text":"门诊医师"
+                },{
+                    "id":"9",
+                    "text":"住院护士"
+                },{
+                    "id":"10",
+                    "text":"门诊护士"
+                }
+            ],
+            onChange: function (newValue, oldValue) {
+
+                var text = $("#person-type").combotree('getText');
+                
+                if (text == '全科医生') {
+
+                    $("#doctor-code").textbox({
+                       required:true,
+                       missingMessage: "医师执业编码必填",
+                    });
+                }else if (text == '住院医师') {
+
+                    $("#doctor-code").textbox({
+                        required:true,
+                        missingMessage: "医师执业编码必填",
+                    });
+                }else if (text == '门诊医师') {
+
+                    $("#doctor-code").textbox({
+                        required:true,
+                        missingMessage: "医师执业编码必填",
+                    });
+                }else {
+
+                    $("#doctor-code").textbox({
+                        required:false,
+                        missingMessage: "医师执业编码必填",
+                    });
+                }
+
+            }
+        });
+
+        <!-- 所属科室 -->
+        $("#sub-departments").combobox({
+            valueField:"id",
+            textField: "text",
+            multiple: false,
+            data:[
+                {
+                    "id":"1",
+                    "text":"收费室"
+                },{
+                    "id":"2",
+                    "text":"药房"
+                },{
+                    "id":"3",
+                    "text":"门诊全科"
+                },{
+                    "id":"4",
+                    "text":"住院科室"
+                },{
+                    "id":"5",
+                    "text":"护士科室"
+                },{
+                    "id":"6",
+                    "text":"中医科室"
+                },{
+                    "id":"7",
+                    "text":"骨科"
+                },{
+                    "id":"8",
+                    "text":"检验科室"
+                },{
+                    "id":"9",
+                    "text":"公卫科室"
+                }
+            ]
+        });
+
+        <!-- 医生职称 -->
+        $("#doctor-title").combobox({
+            valueField:"id",
+            textField: "text",
+            multiple: false,
+            data:[
+                {
+                    "id":"1",
+                    "text":"住院医师"
+                },{
+                    "id":"2",
+                    "text":"主治医师"
+                },{
+                    "id":"3",
+                    "text":"主任医师"
+                },{
+                    "id":"4",
+                    "text":"副主任医师"
+                },{
+                    "id":"5",
+                    "text":"专家医师"
+                }
+            ]
+        });
+
+        <!-- 公卫权限 -->
+        $("#health-auth").combobox({
+            valueField:"id",
+            textField: "text",
+            multiple: false,
+            data:[
+                {
+                    "id":"1",
+                    "text":"公卫管理"
+                },{
+                    "id":"2",
+                    "text":"公卫操作"
+                }
+            ]
+        });
+
+        <!-- 医生执业证书编码 -->
+        $("#doctor-code").textbox({
+
+        });
+    </script>
+
+    <!-- 按钮 -->
+    <script type="text/javascript">
+
+        $("#user_info").linkbutton({
+            width: 100,
+            iconCls: "icon-user",
+            plain: true
+        });
+
+        $("#add_save").linkbutton({
+            width: 80,
+            iconCls: "icon-save",
+            plain: true,
+        });
+
+    </script>
+
+    <script type="text/javascript">
+
+        function save() {
+
+            var name_info = $("#name-info").textbox('getText');
+            var user_pwd = $("#user-pwd").val();
+            var user_account = $("#user-account").textbox('getText');
+            var user_info = $("#user-info").textbox('getText');
+            var sub_org = $("#sub-org").combotree('getText');
+            var business_role = $("#business-role").combobox('getValue');
+            var manager = $("#manager").val();
+            var staff_code = $("#staff-code").textbox('getText');
+            var id_number = $("#id-number").textbox('getText');
+            var phone = $("#phone").textbox('getText');
+            var land_line = $("#land-line").textbox('getText');
+            var alpha_bre_code = $("#alpha-bre-code").textbox('getText');
+            var person_type = $("#person-type").combobox('getText');
+            var sub_departments = $("#sub-departments").combobox('getValue');
+            var doctor_title = $("#doctor-title").combobox('getText');
+            var health_auth = $("#health-auth").combobox('getText');
+            var doctor_code = $("#doctor-code").textbox('getText');
+
+            if (name_info == '' || user_pwd == '' || user_account == '' || staff_code == ''){
+
+                $("#name-tip").show();
+                $("#pwd-tip").show();
+                $("#acc-tip").show();
+                $("#staff-tip").show();
+
+                // $.messager.alert('基本信息','basic_info: ' + name_info + ' | ' + user_pwd + ' | ' + user_account + ' | ' + staff_code,'icon-cancel','question');
+
+                if (name_info != ''){
+                    $("#name-tip").hide();
+                }
+                if (user_pwd != ''){
+                    $("#pwd-tip").hide();
+                }
+                if (user_account != ''){
+                    $("#acc-tip").hide();
+                }
+                if (staff_code != ''){
+                    $("#staff-tip").hide();
+                }
+
+                $.messager.show({
+                    title: "保存失败",
+                    msg: "您有必填项没有输入！",
+                    timeout: 100,
+                    showSpeed: "fade",
+                    width: 180,
+                    height: 100,
+                    style: {
+                        top: 50,
+                        left: 350
+                    }
+                });
+
+            }
+
+            if(person_type == '全科医生' || person_type == '住院医师' || person_type == '门诊医师') {
+
+                $("#code-tip").show();
+
+                if (doctor_code != '') {
+
+                    $("#code-tip").hide();
+
+                }else {
+
+                    // $.messager.alert('基本信息','doc_code: ' + doctor_code,'icon-cancel','question');
+
+                    $.messager.show({
+                        title: "保存失败",
+                        msg: "您有必填项没有输入！",
+                        timeout: 100,
+                        showSpeed: "fade",
+                        width: 180,
+                        height: 100,
+                        style: {
+                            top: 50,
+                            left: 350
+                        }
+                    });
+                }
+            }
+
+            if (name_info != '' && user_pwd != '' && user_account != '' && staff_code != '') {
+
+                $("#name-tip").hide();
+                $("#pwd-tip").hide();
+                $("#acc-tip").hide();
+                $("#staff-tip").hide();
+
+                if (person_type == '全科医生' || person_type == '住院医师' || person_type == '门诊医师') {
+
+                    if (doctor_code != '') {
+
+                        $("#code-tip").hide();
+
+                        // 将多参数以Json对象的字符串形式传给Java后端
+                        var prams = [{
+                            "name_info": name_info,
+                            "user_pwd": user_pwd,
+                            "user_account": user_account,
+                            "sub_org": sub_org,
+                            "business_role": business_role,
+                            "manager": manager,
+                            "staff_code": staff_code,
+                            "id_number": id_number,
+                            "phone": phone,
+                            "alpha_bre_code": alpha_bre_code,
+                            "person_type": person_type,
+                            "sub_departments": sub_departments,
+                            "doctor_title": doctor_title,
+                            "health_auth": health_auth,
+                            "doctor_code": doctor_code,
+                            "land_line": land_line,
+                            "user_info": user_info
+                        }];
+
+                        $.ajax({
+                            url: "/users/reg",
+                            type: "POST",
+                            data: JSON.stringify(prams),
+                            dataType: "json",
+                            contentType: "application/json;charset-UTF-8",
+                            success: function (json) {
+                                if (json.state == '200') {
+
+                                    $.messager.show({
+                                        width: 150,
+                                        height: 100,
+                                        title: "添加用户",
+                                        msg: "添加成功",
+                                        timeout: 300
+                                    });
+                                }
+                            }
+                        });
+                    }else {
+                        $.messager.show({
+                            title: "保存失败",
+                            msg: "您有必填项没有输入！",
+                            timeout: 100,
+                            showSpeed: "fade",
+                            width: 180,
+                            height: 100,
+                            style: {
+                                top: 50,
+                                left: 350
+                            }
+                        });
+                    }
+                }
+
+                if (person_type != '全科医生' && person_type != '住院医师' && person_type != '门诊医师') {
+
+                    // 将多参数以Json对象的字符串形式传给Java后端
+                    var prams = [{
+                        "name_info": name_info,
+                        "user_pwd": user_pwd,
+                        "user_account": user_account,
+                        "sub_org": sub_org,
+                        "business_role": business_role,
+                        "manager": manager,
+                        "staff_code": staff_code,
+                        "id_number": id_number,
+                        "phone": phone,
+                        "alpha_bre_code": alpha_bre_code,
+                        "person_type": person_type,
+                        "sub_departments": sub_departments,
+                        "doctor_title": doctor_title,
+                        "health_auth": health_auth,
+                        "doctor_code": doctor_code,
+                        "land_line": land_line,
+                        "user_info": user_info
+                    }];
+
+                    // prams[0] = name_info;
+                    // prams[1] = user_pwd;
+                    // prams[2] = user_account;
+                    // prams[3] = sub_org;
+                    // prams[4] = business_role;
+                    // prams[5] = manager;
+                    // prams[6] = staff_code;
+                    // prams[7] = id_number;
+                    // prams[8] = phone;
+                    // prams[9] = land_line;
+                    // prams[10] = alpha_bre_code;
+                    // prams[11] = person_type;
+                    // prams[12] = sub_departments;
+                    // prams[13] = doctor_title;
+                    // prams[14] = health_auth;
+                    // prams[15] = doctor_code;
+
+                    // for (var i = 0; i < prams.length; i ++){
+                    //
+                    //     console.log(i + ' = ' + prams[i] + ' | ');
+                    //
+                    // }
+
+                    // console.log(JSON.stringify(prams));
+                    //JSON.stringify(prams)
+                    // ${pageContext.request.contextPath }：获取url请求路径
+
+                    $.ajax({
+                        url: "/users/reg",
+                        type: "POST",
+                        data: JSON.stringify(prams),
+                        dataType: "json",
+                        contentType: "application/json;charset-UTF-8",
+                        success: function (json) {
+                            if (json.state == '200') {
+
+                                $.messager.show({
+                                    width: 150,
+                                    height: 100,
+                                    title: "添加用户",
+                                    msg: "添加成功",
+                                    timeout: 300
+                                });
+                            }
+                        }
+                    });
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

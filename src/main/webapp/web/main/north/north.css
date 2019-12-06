@@ -1,0 +1,103 @@
+
+/* 上层 */
+#north_main{
+    height:70px;
+    background: rgb(238, 238, 238);
+    /*position: relative;*/
+    /*display: inline-block;*/
+    border: 0px;
+}
+
+/*
+    系统名样式
+ */
+#north_sys_name{
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 方正姚体;
+    color: #00bbee;
+    width: 81%;
+    /*margin: 0 0 0 18px;*/
+    /*padding: 0 0 0 18px;*/
+    display: inline-block;
+}
+
+/*
+    切换用户和退出系统
+*/
+#north_change_out{
+    width: 3%;
+    height: 100%;
+    /*display: inline-block;*/
+    position: relative;
+    float: right;
+}
+
+/* 切换用户 */
+#north_change{
+    height: 50%;
+}
+
+/* 退出系统 */
+#north_out{
+    height: 50%;
+}
+
+/*
+    用户与时间
+*/
+#north_user_data{
+    width: 15%;
+    height: 100%;
+    /*display: inline-block;*/
+    position: relative;
+    float: right;
+    border: 0px;
+}
+
+/* 用户 */
+#north_user{
+    background: #ffa8a8;
+    height: 50%;
+}
+
+/* 时间 */
+#north_data{
+    background: #00bbee;
+    height: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

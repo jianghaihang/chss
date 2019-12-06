@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neusoft.CHSS.mapper.MenuMapper">
+
+    <resultMap id="menuMap" type="com.neusoft.CHSS.entity.Menu">
+        <id column="menu_id" property="menuId"></id>
+        <result column="menu_name" property="menuName"></result>
+        <result column="menu_state" property="menuState"></result>
+        <result column="icon_cls" property="iconCls"></result>
+        <result column="url" property="url"></result>
+        <result column="menu_pid" property="menuPid"></result>
+        <result column="menu_type" property="menuType"></result>
+    </resultMap>
+
+    <!-- fingMenuByMenuType() -->
+    <select id="findMenuByMenuType" resultMap="menuMap" parameterType="java.lang.Integer">
+      SELECT
+        menu_id,menu_name,
+        menu_state,icon_cls,
+        url,menu_pid,
+        menu_type
+      FROM
+        menu
+      <where>
+          <if test="menuId != null">
+              menu_pid = #{menuId}
+          </if>
+          <if test="menuType != null">
+              AND menu_type = #{menuType}
+          </if>
+      </where>
+    </select>
+
+</mapper>

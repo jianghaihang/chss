@@ -29,7 +29,7 @@ $(function () {
 
             $.messager.show({
                 title: "严重错误",
-                msg: "加载失败area"
+                msg: "加载失败"
             })
         }
     });

@@ -22,6 +22,19 @@
     <%-- CSS样式 --%>
     <style type="text/css">
 
+        /*定义datagrid的body背景*/
+        .datagrid-body{
+            background: #eeeeee;
+        }
+        /*定义每行的高度*/
+        .datagrid-row{
+            height: 38px;
+        }
+        /*定义数据头部导航栏背景*/
+        .datagrid-header{
+            background: #E0ECFF;
+        }
+
         #main{
             width:600px;
             height:400px;
@@ -96,6 +109,8 @@
             padding:5px;
             background:#eee;
         }
+
+
     </style>
 </head>
 <body>
@@ -308,35 +323,41 @@
                     },{
                         field: "userName",
                         title: "医生姓名",
-                        // width: "100"
+                        align: "center",
                     },{
                         field: "account",
-                        title: "医生账号"
+                        title: "医生账号",
+                        align: "center",
                     },{
                         field: "doc_title",
-                        title: "医生职称"
+                        title: "医生职称",
+                        align: "center",
                     },{
                         field: "sub_dept",
-                        title: "所属科室"
+                        title: "所属科室",
+                        align: "center",
                     },{
                         field: "address",
-                        title: "医院地址"
+                        title: "医疗机构",
+                        align: "center",
                     },{
                         field: "role",
-                        title: "医生权限"
+                        title: "医生权限",
+                        align: "center",
                     },{
                         field: "isDelete",
-                        title: "账号状态"
+                        title: "账号状态",
+                        align: "center",
                     },{
                         field: "modifiedName",
-                        title: "账号操作"
+                        title: "账号操作",
+                        align: "center",
                     }
                 ]],
-                align: "center",
                 pagination: true,
                 striped: true,// 行条纹化
                 singleSelect: true,// 只允许选择一行
-                rownumbers: true
+                rownumbers: true,
             })
         });
 

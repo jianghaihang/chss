@@ -5,7 +5,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-//@EnableAutoConfiguration(exclude = DataSourceAutoConfiguration.class)
+
+/**
+ * @EnableAutoConfiguration(exclude = DataSourceAutoConfiguration.class)
+ */
+
 @MapperScan("com.neusoft.CHSS.mapper")
 public class ChssApplication {
 

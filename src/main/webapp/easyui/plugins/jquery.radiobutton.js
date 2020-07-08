@@ -167,7 +167,7 @@ $.fn.radiobutton.parseOptions=function(_29){
 var t=$(_29);
 return $.extend({},$.parser.parseOptions(_29,["label","labelPosition","labelAlign",{labelWidth:"number"}]),{value:(t.val()||undefined),checked:(t.attr("checked")?true:undefined),disabled:(t.attr("disabled")?true:undefined)});
 };
-$.fn.radiobutton.defaults={width:20,height:20,value:null,disabled:false,checked:false,label:null,labelWidth:"auto",labelPosition:"before",labelAlign:"left",onChange:function(_2a){
+$.fn.radiobutton.defaults={width:15,height:15,value:null,disabled:false,checked:false,label:null,labelWidth:"auto",labelPosition:"before",labelAlign:"left",onChange:function(_2a){
 }};
 })(jQuery);
 

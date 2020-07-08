@@ -125,7 +125,8 @@ $(function () {
 
                         $("#center_page").tabs("add",{
                             title: node.text,
-                            closable: true
+                            closable: true,
+                            content: "<iframe scrolling='auto' frameborder='0' src='/web/per_doc/main.jsp' style='width:100%; height:100%; display:block;'></iframe>"
                         });
                     }else if(node.text == "全局字典设定") {
 
